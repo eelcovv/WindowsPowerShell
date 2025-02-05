@@ -27,7 +27,7 @@ function Load-Envrc {
 			if ($line -match '^export (\w+)=(.+)') {
 				$varName = $matches[1]
 				$varValue = $matches[2]
-				Write-Host "Settting $varName=$varValue"
+				Write-Host "Settting: $varName=$varValue"
 				Set-Item -Path "Env:$($matches[1])" -Value $matches[2]
 			}
 			else{
@@ -45,7 +45,8 @@ Function Prompt {
     # Call Load-Envrc as a background process, otherwise Get-Content is blocking
     $host.UI.RawUI.WindowTitle = Get-Location
     "PS> "
-    Load-Envrc 
+    # do not autoload
+    # Load-Envrc 
 }
 
 # set vi editing mode
