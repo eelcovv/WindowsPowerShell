@@ -1,7 +1,8 @@
 
 
 Set-Alias ll "dir"
-Set-Alias vi "vim"
+Set-Alias vi "nvim"
+Set-Alias vim "nvim"
 Set-Alias ollama "ollama run deepseek-r1:14b" 
 
 # Import the Chocolatey Profile that contains the necessary code to enable
@@ -13,6 +14,12 @@ $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
+
+# set path's for direnv
+# is now stored in user settings 
+#$env:DIRENV_CONFIG="$env:LOCALAPPDATA/direnv"
+#$env:XDG_DATA_HOME="$env:LOCALAPPDATA/xdg/data"
+#$env:XDG_CACHE_HOME="$env:LOCALAPPDATA/xdg/cache"
 
 # needed to work with direnv
 function Load-Envrc {
