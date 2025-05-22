@@ -30,10 +30,7 @@ $env:DIRENV_CONFIG="$env:LOCALAPPDATA/direnv"
 $env:XDG_ROOT="$env:LOCALAPPDATA/xdg"
 $env:XDG_DATA_HOME="$env:XDG_ROOT/data"
 $env:XDG_CACHE_HOME="$env:XDG_ROOT/cache"
-$env:PATH += ";C:/Users/eelco/AppData/Local/xdg/bin"
-
-$env:PATH += ";C:/Program Files/Blender Foundation/Blender 4.3"
-$env:PATH += ";C:/Program Files/ODA/ODAFileConverter"
+$env:PATH += ";C:\Users\eelco\AppData\Local/xdg/bin"
 
 # needed to work with direnv
 function Load-Envrc {
