@@ -170,4 +170,9 @@ Function Prompt {
 Function ActivateVimLineEditing {
 	Set-PSReadLineOption -EditMode Vi
 }
+Function DeActivateVimLineEditing {
+	Set-PSReadLineOption -EditMode Emacs
+}
+
+# default pick vim line editing. deactivate it with DeActivateVimLineEditinig
 ActivateVimLineEditing
