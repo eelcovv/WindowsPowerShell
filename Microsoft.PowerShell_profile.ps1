@@ -11,7 +11,7 @@ Set-Alias ollama "ollama run deepseek-r1:14b"
 $env:NEXTCLOUD="C:\Nextcloud"
 
 #$env:TEXMFHOME="$HOME\texmf"
-$env:TEXMFHOME="$NEXTCLOUD\texmf"
+$env:TEXMFHOME="$env:NEXTCLOUD\texmf"
 
 
 # support UTF-8
