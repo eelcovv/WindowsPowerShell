@@ -168,10 +168,12 @@ Function Prompt {
 
 # set vi editing mode
 Function ActivateVimLineEditing {
-	Set-PSReadLineOption -EditMode Vi
+    Set-PSReadLineOption -EditMode Vi
+    Write-Host "`n[VI MODE] Vi editing mode is active. Run 'DeActivateVimLineEditing' to revert.`n" -ForegroundColor DarkYellow
+
 }
 Function DeActivateVimLineEditing {
-	Set-PSReadLineOption -EditMode Emacs
+    Set-PSReadLineOption -EditMode Emacs
 }
 
 # default pick vim line editing. deactivate it with DeActivateVimLineEditinig
