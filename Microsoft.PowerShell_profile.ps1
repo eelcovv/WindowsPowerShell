@@ -169,7 +169,7 @@ Function Prompt {
 # set vi editing mode
 Function ActivateVimLineEditing {
     Set-PSReadLineOption -EditMode Vi
-    Write-Host "`n[VI MODE] Vi editing mode is active. Run 'DeActivateVimLineEditing' to revert.`n" -ForegroundColor DarkYellow
+    # Write-Host "`n[VI MODE] Vi editing mode is active. Run 'DeActivateVimLineEditing' to revert.`n" -ForegroundColor DarkYellow
 
 }
 Function DeActivateVimLineEditing {
