@@ -1,8 +1,20 @@
 
-$clPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64"
-$env:PATH = "$clPath;$env:PATH"
+#$clPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64"
+#$env:PATH = "$clPath;$env:PATH"
 
 
+#$blenderPath="C:\Program Files\Blender Foundation\Blender 4.5\blender-launcher.exe"
+#$env:PATH = "$blenderPath;$env:PATH"
+
+$env:PATH += ";$env:USERPROFILE/bin"
+$env:PATH += ";C:\Windows\System32"
+
+# to install gemini-cli in powershell do:
+# npm install -g @google/gemini-cli
+# add npm to your path. Then you can run gemini in the cli by typing 'gemini'
+$env:PATH += ";$env:APPDATA\npm"
+
+#Set-Alias wsl "wsl -d Debian"
 Set-Alias ll "dir"
 Set-Alias vi "nvim"
 Set-Alias vim "nvim"
@@ -41,6 +53,9 @@ $env:PATH += ";C:/Program Files/Blender Foundation/Blender 4.3"
 $env:PATH += ";C:/Program Files/ODA/ODAFileConverter"
 
 # needed to work with direnv
+# note the you need to create a .envrc file in your working folder with the following format
+# export VAR1=VALUE1
+# export VAR2=VALUE2
 function Load-Envrc {
     $envrcFile = ".envrc"
     if (Test-Path $envrcFile) {
@@ -174,6 +189,10 @@ Function ActivateVimLineEditing {
 }
 Function DeActivateVimLineEditing {
     Set-PSReadLineOption -EditMode Emacs
+}
+
+function debian {
+    wsl.exe -d Debian --cd "$($PWD.Path)"
 }
 
 # default pick vim line editing. deactivate it with DeActivateVimLineEditinig
