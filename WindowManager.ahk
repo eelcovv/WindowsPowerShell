@@ -14,15 +14,20 @@ if (!hVirtualDesktopAccessor) {
     ExitApp
 }
 
-; Get the address of the specific function inside the DLL
+; --- Get Functions from DLL ---
+; 1. Function to MOVE windows
 MoveWindowToDesktopNumberProc := DllCall("GetProcAddress", "Ptr", hVirtualDesktopAccessor, "AStr", "MoveWindowToDesktopNumber", "Ptr")
+; 2. Function to SWITCH desktops yourself
+GoToDesktopNumberProc := DllCall("GetProcAddress", "Ptr", hVirtualDesktopAccessor, "AStr", "GoToDesktopNumber", "Ptr")
 
-if (!MoveWindowToDesktopNumberProc) {
-    MsgBox("Error: Could not find the function 'MoveWindowToDesktopNumber'.`nAre you using the correct DLL version for Windows 11?")
+if (!MoveWindowToDesktopNumberProc || !GoToDesktopNumberProc) {
+    MsgBox("Error: Could not find necessary functions in the DLL.`nAre you using the correct DLL version for Windows 11?")
     ExitApp
 }
 
-; --- Function Definition ---
+; --- Custom Functions ---
+
+; Move the active window (Win + Shift + Number)
 MoveWindowToDesktop(number) {
     try {
         activeHwnd := WinGetID("A") ; Get ID of the currently active window
@@ -33,10 +38,25 @@ MoveWindowToDesktop(number) {
     }
 }
 
+; Switch to a specific desktop (Win + Number)
+SwitchToDesktop(number) {
+    try {
+        DllCall(GoToDesktopNumberProc, "Int", number - 1)
+    }
+}
+
 ; --- Hotkeys ---
-; Win + Shift + Number
+
+; Win + Shift + 1/2/3/4/5 -> Move Window
 #+1::MoveWindowToDesktop(1)
 #+2::MoveWindowToDesktop(2)
 #+3::MoveWindowToDesktop(3)
 #+4::MoveWindowToDesktop(4)
 #+5::MoveWindowToDesktop(5)
+
+; Win + 1/2/3/4/5 -> Switch Desktop (Overrides default Windows taskbar shortcuts!)
+#1::SwitchToDesktop(1)
+#2::SwitchToDesktop(2)
+#3::SwitchToDesktop(3)
+#4::SwitchToDesktop(4)
+#5::SwitchToDesktop(5)
